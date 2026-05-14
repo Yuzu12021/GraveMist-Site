@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>CHARACTER | GRAVE MIST</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+  <div class="bg-grid"></div>
+
+  <header class="site-header">
+    <a href="../index.html" class="header-logo">
+      <img src="../img/logo.png" alt="GRAVE MIST ロゴ">
+    </a>
+
+    <nav>
+      <a href="../index.html#about">ABOUT</a>
+      <a href="../index.html#feature">FEATURE</a>
+      <a href="../index.html#howto">HOW TO PLAY</a>
+      <a href="../index.html#characters">CHARACTER</a>
+      <a href="../index.html#recruit">RECRUIT</a>
+    </nav>
+  </header>
+
+  <main class="character-page">
+
+    <section class="character-detail">
+      <div class="character-detail-inner">
+
+        <div class="character-visual">
+          <img id="characterImage" src="../img/char01.png" alt="CHARACTER 01">
+        </div>
+
+        <div class="character-profile">
+          <div id="characterProfileContent" class="character-profile-content">
+
+            <p id="characterLabel" class="section-label">
+              CHARACTER
+            </p>
+
+            <h1 id="characterName" class="character-title">
+              CHARACTER 01
+            </h1>
+
+            <p id="characterSubtitle" class="character-subtitle">
+              ここにキャラクターの一言キャッチコピー
+            </p>
+
+            <p id="characterText" class="character-text">
+              ここにキャラクター説明文を入れます。
+            </p>
+
+            <div class="expression-box">
+              <img id="expression1" class="expression-image" src="../img/char/icon/char01_1.png" alt="">
+              <img id="expression2" class="expression-image" src="../img/char/icon/char01_2.png" alt="">
+              <img id="expression3" class="expression-image" src="../img/char/icon/char01_3.png" alt="">
+            </div>
+
+            <div class="cv-area">
+              <p class="cv-title">VOICE</p>
+
+              <p class="character-cv">
+                CV : <span id="characterCv">○○</span>
+              </p>
+
+              <div class="cv-buttons">
+                <button id="voiceBtn1" class="cv-btn" type="button">Voice 1</button>
+                <button id="voiceBtn2" class="cv-btn" type="button">Voice 2</button>
+                <button id="voiceBtn3" class="cv-btn" type="button">Voice 3</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="character-select-section">
+      <div class="section-inner wide">
+        <p class="section-label">SELECT CHARACTER</p>
+
+        <div id="characterSelector" class="character-icon-grid small-icons">
+          <!-- JSで生成 -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script defer src="../script.js"></script>
+  <script defer src="char.js"></script>
+</body>
+</html>
