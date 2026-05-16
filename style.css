@@ -276,7 +276,8 @@ h1 {
 }
 
 .section-label {
-  margin: 0 0 14px;
+  margin: 0;
+  margin-left: -0.5em;
   color: var(--cyan);
   font-family: "Orbitron", sans-serif;
   font-size: 13px;
@@ -660,7 +661,7 @@ footer {
 }
 
 .character-subtitle {
-  margin: 14px 0 20px;
+  margin: 14px 0 ;
 
   color: var(--cyan);
   font-weight: 900;
@@ -720,14 +721,59 @@ footer {
   margin-top: 22px;
 }
 
+.cv-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 14px;
+
+  padding-bottom: 10px;
+
+  border-bottom:
+    1px solid rgba(125,249,255,.15);
+}
+
 .cv-title {
-  margin: 0 0 12px;
+  margin: 0;
 
   color: var(--green);
 
   font-family: "Orbitron", sans-serif;
   font-weight: 900;
-  letter-spacing: .12em;
+
+  font-size: 18px;
+
+  letter-spacing: .14em;
+}
+
+.character-cv {
+  margin: 0;
+
+  padding: 6px 12px;
+
+  color: var(--cyan);
+
+  font-size: 13px;
+  font-weight: 700;
+
+  border:
+    1px solid rgba(125,249,255,.2);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,.04);
+
+  backdrop-filter:
+    blur(8px);
+}
+
+.character-cv span {
+  color: white;
 }
 
 .cv-btn.playing {
@@ -931,7 +977,60 @@ footer {
 /* =========================
    MOBILE
 ========================= */
+@media (max-width: 760px) {
 
+  /* 1. header-logoを左寄せ */
+  .site-header {
+    justify-content: flex-start;
+  }
+
+  .header-logo {
+    margin-right: auto;
+  }
+
+  /* 2. hero背景を右→左に無限スライド */
+  .hero-full {
+    background-image: url("img/char_all_pc.png");
+    background-size: auto 100%;
+    background-repeat: repeat-x;
+    background-position: 0 center;
+    padding-top: 70px;
+    min-height: 110vh;
+    animation: heroBgSlide 35s linear infinite;
+  }
+
+  @keyframes heroBgSlide {
+    from {
+      background-position: 0 center;
+    }
+
+    to {
+      background-position: -1000px center;
+    }
+  }
+
+  /* 3. char.htmlのcharacter-select-sectionボタンを横一列 */
+  .small-icons {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+    gap: 10px;
+    width: 100%;
+
+    padding: 8px 4vw 14px;
+
+    scrollbar-width: none;
+  }
+
+  .small-icons::-webkit-scrollbar {
+    display: none;
+  }
+
+  .small-icons .selector-card {
+    flex: 0 0 72px;
+  }
+}
 @media (max-width: 760px) {
   nav {
     display: none;
@@ -946,7 +1045,7 @@ footer {
   }
 
   .hero-content {
-    margin-top: -40px;
+    margin-top: -20vh;
   }
 
   .character-page {
@@ -957,9 +1056,12 @@ footer {
     height: auto;
     min-height: auto;
 
-    padding: 36px 5vw 20px;
+    padding: 0 5vw 20px;
   }
-
+.character-text{
+  line-height: 1.5;
+  margin-top: 0;
+}
   .character-detail-inner {
     height: auto;
 
@@ -979,7 +1081,7 @@ footer {
     height: auto;
     overflow: visible;
 
-    padding: 26px 22px;
+    padding: 20px 22px;
   }
 
   .profile-box div {
@@ -988,10 +1090,68 @@ footer {
   }
 
   .character-select-section {
-    height: auto;
-    padding: 12px 0 50px;
+    width: 100%;
+    overflow: hidden;
+    padding-top: 0;
+  }
+  .character-visual {
+    position: relative;
   }
 
+  .expression-box {
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin: 0;
+
+    z-index: 10;
+  }
+
+  .expression-image {
+    width: 58px;
+    height: 58px;
+
+    object-fit: cover;
+    border-radius: 14px;
+  }
+#characterSelector.small-icons {
+    display: flex !important;
+
+    flex-direction: row;
+    flex-wrap: nowrap !important;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding: 8px 4vw 14px;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
+  }
+
+  #characterSelector.small-icons::-webkit-scrollbar {
+    display: none;
+  }
+
+  #characterSelector .selector-card {
+    flex: 0 0 72px;
+    width: 72px;
+  }
   .small-icons {
     display: grid;
     grid-template-columns: repeat(5, 1fr);

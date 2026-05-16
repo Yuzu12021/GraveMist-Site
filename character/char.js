@@ -5,7 +5,7 @@
       name: "クール & ビズ",
       subtitle: "ここにキャラクターの一言キャッチコピー",
       cv: "○○",
-      text: "ここにキャラクター説明文を入れます。性格、ゲーム内での立ち位置、モチーフになったボードゲームとの関係などを書くと、初見の人にも魅力が伝わりやすくなります。",
+      text: "ここにキャラクター説明文を入れます。性格、ゲーム内での立ち位置",
       image: "../img/char01.png",
       iconBefore: "../img/char/before/char01_icon_before.png",
       iconAfter: "../img/char/after/char01_icon_after.png",
@@ -352,8 +352,27 @@
     });
   }
 
-  createCharacterSelector();
+  function moveExpressionBoxForMobile() {
+  const expressionBox = document.querySelector(".expression-box");
+  const characterVisual = document.querySelector(".character-visual");
+  const characterProfileContent = document.querySelector(".character-profile-content");
 
-  const initialId = getCharacterIdFromUrl();
-  setCharacter(initialId);
+  if (!expressionBox || !characterVisual || !characterProfileContent) return;
+
+  if (window.innerWidth <= 760) {
+    characterVisual.appendChild(expressionBox);
+    expressionBox.classList.add("mobile-expression");
+  } else {
+    characterProfileContent.insertBefore(expressionBox, document.querySelector(".cv-area"));
+    expressionBox.classList.remove("mobile-expression");
+  }
+}
+  moveExpressionBoxForMobile();
+
+window.addEventListener("resize", moveExpressionBoxForMobile);
+
+createCharacterSelector();
+
+const initialId = getCharacterIdFromUrl();
+setCharacter(initialId);
 })();
