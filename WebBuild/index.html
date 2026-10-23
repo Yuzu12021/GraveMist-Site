@@ -1,32 +1,15 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en-us">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity Web Player | GraveMist_3D</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <style>
-      html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #111; }
-      /* Override Unity template desktop/mobile rules. */
-      #unity-container, #unity-container.unity-desktop, #unity-container.unity-mobile {
-        position: absolute !important; left: 0 !important; top: 0 !important;
-        width: 1640px !important; height: 2360px !important;
-        transform-origin: top left; margin: 0 !important;
-        background: #111;
-      }
-      #unity-canvas, #unity-canvas.unity-mobile {
-        display: block; width: 1640px !important; height: 2360px !important;
-        max-width: none !important; max-height: none !important;
-        background: #111;
-      }
-      #unity-footer { display: none !important; }
-    </style>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width="1640" height="2360" tabindex="-1"></canvas>
+      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -98,22 +81,26 @@
       // JS_FileSystem_Sync() behavior, but in future Unity version, this will be
       // expected to change.
 
-      // Keep the Unity layout at the same logical resolution as the Game view.
-      // Only scale the whole container visually, without changing canvas CSS dimensions.
-      const BASE_WIDTH = 1640;
-      const BASE_HEIGHT = 2360;
-      const container = document.querySelector("#unity-container");
-      function fitGameToViewport() {
-        const viewWidth = document.documentElement.clientWidth;
-        const viewHeight = document.documentElement.clientHeight;
-        const scale = Math.min(viewWidth / BASE_WIDTH, viewHeight / BASE_HEIGHT);
-        container.style.transform = `translate(${Math.max(0, (viewWidth - BASE_WIDTH * scale) / 2)}px, ${Math.max(0, (viewHeight - BASE_HEIGHT * scale) / 2)}px) scale(${scale})`;
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+        document.querySelector("#unity-container").className = "unity-mobile";
+        canvas.className = "unity-mobile";
+
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        // config.devicePixelRatio = 1;
+
+
+      } else {
+        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+        canvas.style.width = "960px";
+        canvas.style.height = "600px";
       }
-      window.addEventListener("resize", fitGameToViewport);
-      window.addEventListener("orientationchange", fitGameToViewport);
-      fitGameToViewport();
-      // Avoid allocating an excessively large render buffer on high-DPI screens.
-      config.devicePixelRatio = 1;
 
       document.querySelector("#unity-loading-bar").style.display = "block";
 
